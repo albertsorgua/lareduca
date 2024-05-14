@@ -1,6 +1,7 @@
 <div>
+    @if (auth()->user()->role === 'admin')
     <!-- Botón para abrir modal de creación de curso -->
-    <button wire:click="create()">Create Course</button>
+    <button wire:click="create()" class="">Create Course</button>
     <!-- Modal Form -->
     @if($isModalOpen)
     <div>
@@ -11,6 +12,7 @@
             <button wire:click="closeModalPopover()">Cancel</button>
         </form>
     </div>
+    @endif
     @endif
     <!-- Listado de cursos -->
     @foreach($courses as $course)

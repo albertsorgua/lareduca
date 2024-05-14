@@ -17,7 +17,15 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="font-sans antialiased">
+    <style>
+        .bg-color {
+            margin: 0;
+            line-height: inherit;
+            background-color: #ECB3B3;
+            font-family: 'Macondo', cursive;
+        }
+    </style>
+    <body class=" bg-color font-sans antialiased">
         <x-banner />
 
         <div class="min-h-screen bg-gray-100">
@@ -37,6 +45,10 @@
                 {{ $slot }}
             </main>
         </div>
+
+        <footer class="bg-white w-full h-28 flex items-center justify-center text-sm text-black relative bottom-0">
+            LAREDUCA - Hecho por Albert Soriano
+        </footer>
 
         @stack('modals')
 

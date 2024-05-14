@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Role;
 
-
-
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -26,3 +23,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+// Ruta para gestionar cursos
+Route::get(
+    '/courses/manage',
+    \App\Livewire\CourseManagement::class
+)->name('courses.manage')->middleware('auth');

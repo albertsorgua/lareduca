@@ -1,71 +1,55 @@
+    <style>
+        .bg-color{
+            margin: 0;
+            line-height: inherit;
+            background-color: #ECB3B3;
+        }
 
-<!-- Contenedor principal -->
-<div class="flex items-center justify-center min-h-screen py-12 bg-gray-100 px-4 sm:px-6 lg:px-8">
+        .page-title {
+            font-family: "Macondo", cursive;
+            font-weight: 400;
+            font-style: normal;
+            color: #C9214A;
+            font-size: 3.7rem;
+            -webkit-text-stroke-width: 1.5px;
+            -webkit-text-stroke-color: black;
+            text-shadow: 2px 2px 0 grey, 4px 4px 0 grey;
+        }
+    </style>
 
-    <div class="absolute top-0 right-0 p-4">
-        <span class="text-gray-600">¡Hola, {{ auth()->user()->name }}!</span>
-        <span class="text-gray-600">({{ auth()->user()->role }})</span>
+    <!-- Encabezado -->
+    <div class="bg-gray-800 py-6 px-8 text-white">
+        <h1 class="text-4xl font-extrabold leading-tight">¡Hola {{ auth()->user()->name }}!</h1>
+        <p class="mt-2 text-lg">Tu rol es el de {{ auth()->user()->role }}!</p>
     </div>
 
-    <!-- Contenido -->
-    <div class="max-w-4xl w-full bg-white rounded-lg shadow-xl overflow-hidden" >
-
-        <!-- Encabezado -->
-        <div class="bg-gray-800 py-6 px-8 text-white">
-            <h1 class="text-4xl font-extrabold leading-tight">¡Bienvenido al Portal de Aprendizaje!</h1>
-            <p class="mt-2 text-lg">Accede a recursos educativos innovadores para potenciar tu enseñanza.</p>
-        </div>
-
-        <!-- Información de la escuela -->
-        <div class="p-8">
-            <h2 class="text-2xl font-semibold mb-4">Sobre nuestra escuela</h2>
-            <p class="text-gray-700 leading-relaxed mb-4">Somos una institución dedicada a ofrecer una educación de calidad que promueva la excelencia académica y el desarrollo integral de nuestros estudiantes.</p>
-            <a href="#" class="text-blue-600 font-semibold hover:underline">Conoce más sobre nosotros →</a>
-        </div>
-
-        <!-- Gráfico de asistencia de alumnos, solo lo podra ver el admin-->
-        @if (auth()->user()->role === 'admin')
-        <div class="bg-gray-200 px-8 py-6">
-            <h2 class="text-2xl font-semibold mb-4">Asistencia de Alumnos</h2>
-            <!-- <img src="https://via.placeholder.com/1200x600" alt="Gráfico de asistencia" class="w-full rounded-lg shadow-lg mb-4"> -->
-            <img src="https://www.alexiaeducaria.com/wp-content/uploads/video-alexia-portada-vimeo.png" alt="Imagen1" class="w-full rounded-lg shadow-lg mb-4">
-            <p class="text-gray-700 leading-relaxed">Visualiza la asistencia de los alumnos en tiempo real y analiza tendencias importantes para mejorar la participación y el rendimiento académico.</p>
-            <a href="#" class="text-blue-600 font-semibold hover:underline">Ver detalles de la asistencia →</a>
-        </div>
-        @endif
-
-
-        <!-- Últimos cursos -->
-        <div class="p-8">
-            <h2 class="text-2xl font-semibold mb-4">Últimos cursos disponibles</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Curso 1 -->
-                <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Introducción a la Programación</h3>
-                    <p class="text-gray-700 leading-relaxed mb-4">Aprende los conceptos básicos de la programación y desarrolla habilidades fundamentales en el mundo digital.</p>
-                    <a href="#" class="text-blue-600 font-semibold hover:underline">Más información →</a>
-                </div>
-                <!-- Curso 2 -->
-                <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Diseño de Interfaces de Usuario</h3>
-                    <p class="text-gray-700 leading-relaxed mb-4">Descubre cómo diseñar interfaces de usuario efectivas y atractivas para mejorar la experiencia de los usuarios.</p>
-                    <a href="#" class="text-blue-600 font-semibold hover:underline">Más información →</a>
-                </div>
-                <!-- Curso 3 -->
-                <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold mb-2">Inteligencia Artificial Aplicada</h3>
-                    <p class="text-gray-700 leading-relaxed mb-4">Explora las aplicaciones prácticas de la inteligencia artificial en diversas industrias y sectores.</p>
-                    <a href="#" class="text-blue-600 font-semibold hover:underline">Más información →</a>
-                </div>
+    <main class="mb-10">
+        <h1 class="page-title text-center">Bienvenido al portal de aprendizaje Lareduca ASG</h1>
+        <div>
+            <div class="flex">
+                <p class="flex mx-40 w-1/3 text-center items-center">Nuestra dedicación y esfuerzos dedicados a este proyecto
+                    para
+                    que vuestros alumnos tengan una forma divertida y entretenida
+                    de aprender los temas más tediosos.</p>
+                <img src="{{ asset('img/pexels-energepiccom-313690.jpg') }}" alt="Welcome Image 1"
+                    class="flex m-auto w-1/3 h-60">
+            </div>
+            <div class="flex">
+                <img src="{{ asset('img/pexels-andrea-piacquadio-927022.jpg') }}" alt="Welcome Image 2"
+                    class=" flex m-auto w-1/3 h-72">
+                <p class="flex mx-40 w-1/3 text-center items-center">Detrás de este proyecto hay un gran equipo con muchos
+                    años
+                    de experiencia el cual está enteramente dedicado a este proyecto
+                    con el fin de que se ofrezca una experiencia de calidad, la cual
+                    brinde un gran aprendizaje a nuestros usuarios.</p>
             </div>
         </div>
+    </main>
 
-        <!-- Llamado a la acción -->
-        <div class="bg-gray-800 py-6 px-8 text-white">
-            <h2 class="text-2xl font-semibold mb-2">¡Únete a nuestra comunidad educativa hoy mismo!</h2>
-            <p class="text-lg">Descubre nuevas oportunidades de aprendizaje y desarrollo profesional.</p>
-            <a href="#" class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg">Regístrate ahora</a>
-        </div>
-
-    </div>
-</div>
+    @if (auth()->user()->role === 'admin')
+    <div class="bg-gray-100 border text-center pb-10">
+        <h2 class="mt-10 text-2xl font-bold">Panel de administración</h2>
+        <p class=" my-5 text-lg">Aquí podrás gestionar los cursos y usuarios de la plataforma.</p>
+        <a href="{{ route('courses.manage') }}" class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Ir al panel de administración</a>
+    </div>        
+    @endif

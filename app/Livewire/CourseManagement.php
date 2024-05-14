@@ -41,7 +41,7 @@ class CourseManagement extends Component
 
             'description' => 'required',
         ]);
-        Course::updateOrCreate(['id' => $this->course_id], [
+        Course::updateOrCreate(['id' => $this->course_id,
             'title' => $this->title,
             'description' => $this->description,
         ]);
