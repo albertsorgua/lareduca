@@ -1,14 +1,29 @@
-<style>
-    .font-macondo {
-        font-family: 'Macondo', cursive;
-    }
-    
-    body {
-        margin: 0;
-        line-height: inherit;
-        background-color: #ECB3B3;
-    }
-</style>
+<header class="flex items-center justify-between bg-white w-full">
+    <a href="/">
+        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="flex items-center h-40">
+    </a>
+    @if (Route::has('login'))
+        <nav>
+            @auth
+                <a href="{{ url('/dashboard') }}"
+                    class="flex items-center rounded-md text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                    Dashboard
+                </a>
+            @else
+                <a href="{{ route('login') }}"
+                    class="flex items-center rounded-md text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] mr-10">
+                    Log In
+                </a>
+
+                <!-- @if (Route::has('register'))
+<a href="{{ route('register') }}" class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]">
+                                                            Register
+                                                        </a> -->
+        @endif
+    @endauth
+    </nav>
+    @endif
+</header>
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
@@ -24,7 +39,7 @@
 
         <h1 class="font-macondo text-center text-6xl text-black m-10">{{ __('Login') }}</h1>
 
-        <form class="font-macondo" method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}">
             @csrf
 
             <div class="mb-10">
@@ -42,7 +57,7 @@
             <div class="block my-4">
                 <label for="remember_me" class="flex items-center">
                     <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    <span class="ms-2 text-sm text-gray-600">{{ __('Recuérdame') }}</span>
                 </label>
             </div>
 
@@ -50,7 +65,7 @@
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                        {{ __('¿Has olvidado tu contraseña?') }}
                     </a>
                 @endif
 
@@ -61,3 +76,7 @@
         </form>
     </x-authentication-card>
 </x-guest-layout>
+
+<footer class="bg-white w-full h-28 flex items-center justify-center text-sm text-black relative bottom-0">
+    LAREDUCA - Hecho por Albert Soriano
+</footer>

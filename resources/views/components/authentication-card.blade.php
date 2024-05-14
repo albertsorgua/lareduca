@@ -3,9 +3,10 @@
         margin: 0;
         line-height: inherit;
         background-color: #ECB3B3;
+        font-family: 'Macondo', cursive;
     }
 </style>
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-color">
+<div class="h-4/6 flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-color">
     <div>
         {{ $logo }}
     </div>

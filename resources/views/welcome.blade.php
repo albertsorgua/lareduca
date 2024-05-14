@@ -57,7 +57,9 @@
     <div>
         <div class="relative h-screen flex flex-col items-center selection:bg-[#FF2D20] selection:text-white w">
             <header class="flex items-center bg-white w-full">
-                <img src="{{ asset('img/logo.png') }}" alt="Logo" class="flex items-center h-40">
+                <a href="/">
+                    <img src="{{ asset('img/logo.png') }}" alt="Logo" class="flex items-center h-40">
+                </a>
                 @if (Route::has('login'))
                     <nav>
                         @auth
