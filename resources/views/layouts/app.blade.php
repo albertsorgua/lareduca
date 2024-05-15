@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Styles -->
-        @livewireStyles
-    </head>
-    <style>
-        .bg-color {
-            margin: 0;
-            line-height: inherit;
-            background-color: #ECB3B3;
-            font-family: 'Macondo', cursive;
-        }
-    </style>
-    <body class=" bg-color font-sans antialiased">
-        <x-banner />
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+    <!-- Styles -->
+    @livewireStyles
+</head>
+<style>
+    .bg-color {
+        margin: 0;
+        line-height: inherit;
+        background-color: #ECB3B3;
+        font-family: 'Macondo', cursive;
+    }
+</style>
 
+<body class=" bg-color font-sans antialiased">
+    <x-banner />
+
+    <div class="bg-gray-100">
+        @livewire('navigation-menu')
+        <div class="flex">
+            @livewire('sidebar-navigation')
+
+            <div class="flex-1">
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
@@ -44,14 +49,17 @@
             <main>
                 {{ $slot }}
             </main>
+            </div>
         </div>
+    </div>
 
-        <footer class="bg-white w-full h-28 flex items-center justify-center text-sm text-black relative bottom-0">
-            LAREDUCA - Hecho por Albert Soriano
-        </footer>
+    <footer class="bg-white w-full h-28 flex items-center justify-center text-sm text-black relative bottom-0">
+        LAREDUCA - Hecho por Albert Soriano
+    </footer>
 
-        @stack('modals')
+    @stack('modals')
 
-        @livewireScripts
-    </body>
+    @livewireScripts
+</body>
+
 </html>

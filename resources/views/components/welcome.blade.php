@@ -50,6 +50,7 @@
     <div class="bg-gray-100 border text-center pb-10">
         <h2 class="mt-10 text-2xl font-bold">Panel de administración</h2>
         <p class=" my-5 text-lg">Aquí podrás gestionar los cursos y usuarios de la plataforma.</p>
-        <a href="{{ route('courses.manage') }}" class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Ir al panel de administración</a>
+        <a href="{{ route('courses.manage') }}" class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Ir al panel de cursos</a>
+        <a href="{{ route('users.manage') }}" class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Ir al panel de usuarios</a>
     </div>        
     @endif

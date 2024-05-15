@@ -29,3 +29,9 @@ Route::get(
     '/courses/manage',
     \App\Livewire\CourseManagement::class
 )->name('courses.manage')->middleware('auth');
+
+// Ruta para gestionar usuarios
+Route::get(
+    '/users/manage',
+    \App\Livewire\UserManagement::class
+)->name('users.manage')->middleware('auth');
