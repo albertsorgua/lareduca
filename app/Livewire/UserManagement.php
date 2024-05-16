@@ -32,10 +32,10 @@ class UserManagement extends Component
         $user = User::create([
             'name' => $this->name,
             'email' => $this->email,
+            'role' => $this->selectedRoleId,
             'password' => bcrypt('Monlau2023')
         ]);
-        $role = Role::findById($this->selectedRoleId);
-        $user->assignRole($role);
+        
         session()->flash('message', 'User created successfully.');
         $this->resetInputFields();
         $this->users = User::all();
