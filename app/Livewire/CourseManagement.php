@@ -4,16 +4,18 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Course;
+use App\Models\User;
 
 
 class CourseManagement extends Component
 {
-    public $courses, $title, $description, $course_id;
+    public $courses, $title, $description, $course_id, $teacher_id;
     public $isModalOpen = false;
     public function render()
     {
         $this->courses = Course::all();
-        return view('livewire.course-management');
+        $teachers = User::where('role', 'teacher')->get();
+        return view('livewire.course-management', compact('teachers'));
     }
     public function create()
     {
@@ -33,17 +35,19 @@ class CourseManagement extends Component
         $this->title = '';
         $this->description = '';
         $this->course_id = '';
+        $this->teacher_id = '';
     }
     public function store()
     {
         $this->validate([
             'title' => 'required',
-
             'description' => 'required',
+            'teacher_id' => 'required',
         ]);
         Course::updateOrCreate(['id' => $this->course_id], [
             'title' => $this->title,
             'description' => $this->description,
+            'teacher_id' => $this->teacher_id,
         ]);
         session()->flash('message', $this->course_id ? 'Course updated.'
             : 'Course created.');

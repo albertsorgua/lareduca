@@ -7,8 +7,7 @@
 <div class="p-6 bg-color rounded shadow">
     <div class="p-6 bg-white rounded shadow">
         <h1 class="text-2xl font-bold mb-4">User Management</h1>
-        <form wire:submit.prevent="store" class="space-y-4">
-            <input type="text" wire:model="name" placeholder="Name" required
+        <form wire:submit.prevent="{{ $userId ? 'update' : 'store' }}" class="space-y-4">            <input type="text" wire:model="name" placeholder="Name" required
                 class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
             <input type="email" wire:model="email" placeholder="Email" required
                 class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -19,8 +18,10 @@
                     <option value="{{ $role->name }}">{{ $role->name }}</option>
                 @endforeach
             </select>
-            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Create
-                User</button>
+
+            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
+                {{ $userId ? 'Update User' : 'Create User' }}
+            </button>
         </form>
     </div>
 

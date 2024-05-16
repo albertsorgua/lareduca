@@ -18,6 +18,13 @@
                         class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <textarea wire:model="description" placeholder="Description"
                         class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    <select wire:model="teacher_id"
+                        class="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">Seleccionar Profesor</option>
+                        @foreach ($teachers as $teacher)
+                            <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                        @endforeach
+                    </select>
                     <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700">Save
                         Course</button>
                     <button wire:click="closeModalPopover()"
@@ -32,7 +39,8 @@
         @foreach ($courses as $course)
             <div class=" mt-4 p-4 bg-gray-100 rounded shadow">
                 <h4 class="text-lg font-bold">{{ $course->title }}</h4>
-                <p class="mt-2">{{ $course->description }}</p>
+                <p class="mt-2">Descripción: {{ $course->description }}</p>
+                <p class="mt-2">Profesor: {{ $course->teacher->name }}</p>
                 @if (auth()->user()->role === 'admin')
                     <button wire:click="edit({{ $course->id }})"
                         class="mt-2 px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-700">Edit</button>
