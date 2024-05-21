@@ -11,25 +11,30 @@ class CourseManagement extends Component
 {
     public $courses, $title, $description, $course_id, $teacher_id;
     public $isModalOpen = false;
+
     public function render()
     {
         $this->courses = Course::all();
         $teachers = User::where('role', 'teacher')->get();
         return view('livewire.course-management', compact('teachers'));
     }
+
     public function create()
     {
         $this->resetCreateForm();
         $this->openModalPopover();
     }
+
     public function openModalPopover()
     {
         $this->isModalOpen = true;
     }
+
     public function closeModalPopover()
     {
         $this->isModalOpen = false;
     }
+
     private function resetCreateForm()
     {
         $this->title = '';
@@ -37,6 +42,7 @@ class CourseManagement extends Component
         $this->course_id = '';
         $this->teacher_id = '';
     }
+
     public function store()
     {
         $this->validate([
@@ -54,6 +60,7 @@ class CourseManagement extends Component
         $this->closeModalPopover();
         $this->resetCreateForm();
     }
+
     public function edit($id)
     {
         $course = Course::findOrFail($id);
@@ -62,9 +69,15 @@ class CourseManagement extends Component
         $this->description = $course->description;
         $this->openModalPopover();
     }
+
     public function delete($id)
     {
         Course::find($id)->delete();
         session()->flash('message', 'Course deleted.');
+    }
+
+    public function showDetails($id)
+    {
+        return redirect()->route('courses.show', ['course' => $id]);
     }
 }

@@ -24,14 +24,19 @@ Route::middleware([
     })->name('dashboard');
 });
 
+// Ruta para gestionar usuarios
+Route::get(
+    '/users/manage',
+    \App\Livewire\UserManagement::class
+)->name('users.manage')->middleware('auth');
+
 // Ruta para gestionar cursos
 Route::get(
     '/courses/manage',
     \App\Livewire\CourseManagement::class
 )->name('courses.manage')->middleware('auth');
 
-// Ruta para gestionar usuarios
-Route::get(
-    '/users/manage',
-    \App\Livewire\UserManagement::class
-)->name('users.manage')->middleware('auth');
+// Ruta para gestionar asignaciones
+Route::get('/courses/{course}', function (App\Models\Course $course) {
+    return view('livewire.course-details', ['course' => $course]);
+})->name('courses.show');

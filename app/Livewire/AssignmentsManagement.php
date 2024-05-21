@@ -4,31 +4,51 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Assignment;
-use App\Models\Course;
 
 class AssignmentsManagement extends Component
 {
-    public $assignments, $title, $description, $due_date, $course_id,
-        $assignment_id;
+    public $assignments, $title, $description, $due_date, $course_id, $assignment_id;
     public $isOpen = false;
-    public function render()
+
+    protected $rules = [
+        'title' => 'required|string|max:255',
+        'description' => 'required|string|max:1000',
+        'due_date' => 'required|date',
+    ];
+
+    public function mount($course_id)
+    {
+        $this->course_id = $course_id;
+        $this->loadAssignments();
+    }
+
+    public function loadAssignments()
     {
         $this->assignments = Assignment::where('course_id', $this->course_id)->get();
+    }
+
+    public function render()
+    {
         return view('livewire.assignments-management');
     }
+
     public function create()
     {
         $this->resetInputFields();
         $this->openModal();
     }
+
+
     public function openModal()
     {
         $this->isOpen = true;
     }
+
     public function closeModal()
     {
         $this->isOpen = false;
     }
+
     private function resetInputFields()
     {
         $this->title = '';
@@ -36,6 +56,7 @@ class AssignmentsManagement extends Component
         $this->due_date = '';
         $this->assignment_id = '';
     }
+
     public function store()
     {
         $this->validate([
@@ -53,6 +74,7 @@ class AssignmentsManagement extends Component
         $this->closeModal();
         $this->resetInputFields();
     }
+
     public function edit($id)
     {
         $assignment = Assignment::findOrFail($id);
@@ -62,6 +84,7 @@ class AssignmentsManagement extends Component
         $this->due_date = $assignment->due_date;
         $this->openModal();
     }
+
     public function delete($id)
     {
         Assignment::find($id)->delete();

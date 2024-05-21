@@ -54,6 +54,7 @@ class UserManagement extends Component
     public function delete($id)
     {
         $user = User::findOrFail($id);
+        $user->syncRoles([]);
         $user->delete();
         session()->flash('message', 'User Deleted Successfully.');
         $this->users = User::all();
