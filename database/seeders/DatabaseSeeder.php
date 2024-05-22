@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\User;
+use Database\Seeders\AssignmentSeeder;
+use Database\Seeders\CourseSeeder;
 use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
 
@@ -17,6 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             RoleSeeder::class,
+            CourseSeeder::class,
+            AssignmentSeeder::class
         ]);
     }
 }

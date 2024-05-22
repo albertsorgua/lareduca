@@ -3,10 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Role;
 
+// Ruta de bienvenida
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Ruta para crear roles
 Route::get('/roles', function () {
     $roleAdmin = Role::create(['name' => 'admin']);
     $roleTeacher = Role::create(['name' => 'teacher']);
@@ -14,7 +16,7 @@ Route::get('/roles', function () {
     return 'Roles creados';
 });
 
-
+// Rutas para autenticación
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -27,13 +29,13 @@ Route::middleware([
 
 // Ruta para gestionar usuarios
 Route::get(
-    '/users/manage',
+    '/users',
     \App\Livewire\UserManagement::class
 )->name('users.manage')->middleware('auth');
 
 // Ruta para gestionar cursos
 Route::get(
-    '/courses/manage',
+    '/courses',
     \App\Livewire\CourseManagement::class
 )->name('courses.manage')->middleware('auth');
 
@@ -41,3 +43,6 @@ Route::get(
 Route::get('/courses/{course}', function (App\Models\Course $course) {
     return view('livewire.course-details', ['course' => $course]);
 })->name('courses.show');
+
+// Ruta para gestionar entregas
+Route::get('/courses/{course}/{assignmentId}', \App\Livewire\AssignmentSubmissions::class)->name('assignments.show')->middleware('auth');
