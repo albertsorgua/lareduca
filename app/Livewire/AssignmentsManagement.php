@@ -38,7 +38,6 @@ class AssignmentsManagement extends Component
         $this->openModal();
     }
 
-
     public function openModal()
     {
         $this->isOpen = true;
@@ -73,6 +72,7 @@ class AssignmentsManagement extends Component
         session()->flash('message', $this->assignment_id ? 'Assignment Updated Successfully.' : 'Assignment Created Successfully.');
         $this->closeModal();
         $this->resetInputFields();
+        $this->loadAssignments();
     }
 
     public function edit($id)
@@ -89,5 +89,6 @@ class AssignmentsManagement extends Component
     {
         Assignment::find($id)->delete();
         session()->flash('message', 'Assignment Deleted Successfully.');
+        $this->loadAssignments();
     }
 }

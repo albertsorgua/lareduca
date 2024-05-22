@@ -1,5 +1,5 @@
     <style>
-        .bg-color{
+        .bg-color {
             margin: 0;
             line-height: inherit;
             background-color: #ECB3B3;
@@ -27,7 +27,8 @@
         <h1 class="page-title text-center">Bienvenido al portal de aprendizaje Lareduca ASG</h1>
         <div>
             <div class="flex">
-                <p class="flex mx-40 w-1/3 text-center items-center">Nuestra dedicación y esfuerzos dedicados a este proyecto
+                <p class="flex mx-40 w-1/3 text-center items-center">Nuestra dedicación y esfuerzos dedicados a este
+                    proyecto
                     para
                     que vuestros alumnos tengan una forma divertida y entretenida
                     de aprender los temas más tediosos.</p>
@@ -37,7 +38,8 @@
             <div class="flex">
                 <img src="{{ asset('img/pexels-andrea-piacquadio-927022.jpg') }}" alt="Welcome Image 2"
                     class=" flex m-auto w-1/3 h-72">
-                <p class="flex mx-40 w-1/3 text-center items-center">Detrás de este proyecto hay un gran equipo con muchos
+                <p class="flex mx-40 w-1/3 text-center items-center">Detrás de este proyecto hay un gran equipo con
+                    muchos
                     años
                     de experiencia el cual está enteramente dedicado a este proyecto
                     con el fin de que se ofrezca una experiencia de calidad, la cual
@@ -46,11 +48,37 @@
         </div>
     </main>
 
+    @if (auth()->user()->isTeacher())
+        @php
+            $studentCount = \App\Models\User::where('role', 'student')->count();
+            $courseCount = \App\Models\Course::count();
+            $assignmentCount = \App\Models\Assignment::count();
+        @endphp
+        <div class="flex justify-around bg-gray-200">
+            <div class="bg-white shadow-lg rounded-lg p-6 m-4">
+                <h2 class="text-xl font-bold mb-4">Estudiantes</h2>
+                <p class="text-gray-700">Total: {{ $studentCount }}</p>
+            </div>
+            <div class="bg-white shadow-lg rounded-lg p-6 m-4">
+                <h2 class="text-xl font-bold mb-4">Cursos</h2>
+                <p class="text-gray-700">Total: {{ $courseCount }}</p>
+            </div>
+            <div class="bg-white shadow-lg rounded-lg p-6 m-4">
+                <h2 class="text-xl font-bold mb-4">Tareas</h2>
+                <p class="text-gray-700">Total: {{ $assignmentCount }}</p>
+            </div>
+        </div>
+    @endif
+
+
     @if (auth()->user()->role === 'admin')
-    <div class="bg-gray-100 border text-center pb-10">
-        <h2 class="mt-10 text-2xl font-bold">Panel de administración</h2>
-        <p class=" my-5 text-lg">Aquí podrás gestionar los cursos y usuarios de la plataforma.</p>
-        <a href="{{ route('courses.manage') }}" class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Ir al panel de cursos</a>
-        <a href="{{ route('users.manage') }}" class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Ir al panel de usuarios</a>
-    </div>        
+        <div class="bg-gray-100 border text-center pb-10">
+            <h2 class="mt-10 text-2xl font-bold">Panel de administración</h2>
+            <p class=" my-5 text-lg">Aquí podrás gestionar los cursos y usuarios de la plataforma.</p>
+            <a href="{{ route('courses.manage') }}"
+                class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Ir al panel de cursos</a>
+            <a href="{{ route('users.manage') }}"
+                class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Ir al panel de
+                usuarios</a>
+        </div>
     @endif

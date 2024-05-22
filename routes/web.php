@@ -14,6 +14,7 @@ Route::get('/roles', function () {
     return 'Roles creados';
 });
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
