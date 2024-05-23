@@ -46,3 +46,6 @@ Route::get('/courses/{course}', function (App\Models\Course $course) {
 
 // Ruta para gestionar entregas
 Route::get('/courses/{course}/{assignmentId}', \App\Livewire\AssignmentSubmissions::class)->name('assignments.show')->middleware('auth');
+
+// Ruta para integrar juegos educativos
+Route::get('/games', \App\Livewire\EducationalGamesIntegration::class)->name('games.show')->middleware('auth');

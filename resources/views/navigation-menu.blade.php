@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('courses.manage')" :active="request()->routeIs('courses.manage')">
                         Cursos
                     </x-nav-link>
+                    <x-nav-link :href="route('games.show')" :active="request()->routeIs('games.show')">
+                        Juegos
+                    </x-nav-link>
                     @if (auth()->user()->role === 'admin')
                     <x-nav-link :href="route('users.manage')" :active="request()->routeIs('users.manage')">
                         Usuarios
