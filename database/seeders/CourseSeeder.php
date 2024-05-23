@@ -16,7 +16,7 @@ class CourseSeeder extends Seeder
         DB::table('courses')->insert([
             'title' => 'M3',
             'description' => 'Programación',
-            'teacher_id' => 1
+            'teacher_id' => 5
         ]);  
 
         DB::table('courses')->insert([
@@ -34,7 +34,7 @@ class CourseSeeder extends Seeder
         DB::table('courses')->insert([
             'title' => 'M8',
             'description' => 'Despliegue de aplicaciones web',
-            'teacher_id' => 1
+            'teacher_id' => 5
         ]);
 
         DB::table('courses')->insert([
@@ -46,7 +46,7 @@ class CourseSeeder extends Seeder
         DB::table('courses')->insert([
             'title' => 'M12',
             'description' => 'Proyecto',
-            'teacher_id' => 1
+            'teacher_id' => 5
         ]);
     }
 }

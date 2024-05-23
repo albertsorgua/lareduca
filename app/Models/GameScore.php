@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class GameScore extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'session_id',
+        'user_id',
+        'game_id',
+        'score',
+        'high_score'
+    ];
 }

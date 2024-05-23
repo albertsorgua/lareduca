@@ -9,14 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('game_scores', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->integer('score');
-            $table->integer('highest_score');
-            $table->string('game_id');
+            $table->foreignId('session_id')->constrained('game_sessions')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('game_id')->constrained('games')->onDelete('cascade');
+            $table->float('score');
+            $table->float('high_score');
             $table->timestamps();
         });
     }
