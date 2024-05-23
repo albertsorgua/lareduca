@@ -11,5 +11,9 @@
             <h2 class="text-xl font-semibold mt-6 mb-3">Asignaciones</h2>
             @livewire('assignments-management', ['course_id' => $course->id])
         </div>
+        <div class="mt-5 bg-white p-5">
+            <h2 class="text-xl font-semibold mt-6 mb-3">Puntuación del Estudiante</h2>
+            @livewire('student-progress-tracker', ['courseId' => $course->id])
+        </div>
     </div>
 @endsection
